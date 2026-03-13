@@ -1,6 +1,44 @@
 ---
-// Sermones component
+const PLAYLIST_ID = 'PLRL61YDlOPCfu5-dE60qV_nNTFbpHLC21';
+const PLAYLIST_URL = `https://www.youtube.com/playlist?list=${PLAYLIST_ID}`;
+
+let videos : any = [];
+try {
+  const res = await fetch(
+    `https://www.youtube.com/feeds/videos.xml?playlist_id=${PLAYLIST_ID}`
+  );
+  const xml = await res.text();
+
+  const entries = [...xml.matchAll(/<entry>([\s\S]*?)<\/entry>/g)];
+  videos = entries.slice(0, 5).map(([, entry]) => {
+    const videoId   = entry.match(/<yt:videoId>(.*?)<\/yt:videoId>/)?.[1] ?? '';
+    const title     = entry.match(/<title>(.*?)<\/title>/)?.[1] ?? '';
+    const published = entry.match(/<published>(.*?)<\/published>/)?.[1] ?? '';
+    const date = published
+      ? new Date(published).toLocaleDateString('es-CO', {
+          day: 'numeric', month: 'long', year: 'numeric'
+        })
+      : '';
+    return {
+      videoId,
+      title: title.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>'),
+      date,
+      url: `https://www.youtube.com/watch?v=${videoId}`,
+      thumb: `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`,
+    };
+  });
+} catch (e) {
+  console.warn('No se pudo cargar el feed de YouTube:', e);
+}
 ---
+
+<style>
+  a.sermon-card {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+</style>
 
 <div id="sermones" style="background:#0d0b09;">
   <section>
@@ -9,65 +47,29 @@
         <p class="section-eyebrow">Sermones Recientes</p>
         <h2 class="section-title">Cada mensaje,<br><em>para tu vida.</em></h2>
       </div>
-      <a href="#" class="btn-ghost" style="white-space:nowrap;">Ver todos →</a>
+      <a href={PLAYLIST_URL} target="_blank" rel="noopener" class="btn-ghost" style="white-space:nowrap;">Ver todos →</a>
     </div>
 
     <div class="sermons-grid fade-in">
-      <div class="sermon-card">
-        <img src="/imgs/extracted_0_serm_n_destacado.jpg" alt="Sermón destacado" class="sermon-thumb" />
-        <div class="sermon-overlay">
-          <div class="sermon-date">Más reciente · Domingo</div>
-          <div class="sermon-title">Religión sin Relación: Demasiado Peligroso</div>
-          <div class="sermon-pastor">Pr. Daniel Hermida</div>
-        </div>
-        <div class="play-btn">
-          <svg width="14" height="16" fill="none" viewBox="0 0 14 16">
-            <path d="M1 1l12 7-12 7V1z" stroke="#EAE6DD" stroke-width="1.5" stroke-linejoin="round"/>
-          </svg>
-        </div>
-      </div>
-
-      <div class="sermon-card">
-        <img src="/imgs/extracted_1_serm_n.jpg" alt="Sermón" class="sermon-thumb" />
-        <div class="sermon-overlay">
-          <div class="sermon-date">Miércoles · En Casa</div>
-          <div class="sermon-title">Lo Que Creer Realmente Significa</div>
-          <div class="sermon-pastor">Pr. Daniel Hermida</div>
-        </div>
-        <div class="play-btn">
-          <svg width="14" height="16" fill="none" viewBox="0 0 14 16">
-            <path d="M1 1l12 7-12 7V1z" stroke="#EAE6DD" stroke-width="1.5" stroke-linejoin="round"/>
-          </svg>
-        </div>
-      </div>
-
-      <div class="sermon-card">
-        <img src="/imgs/extracted_2_serm_n.jpg" alt="Sermón" class="sermon-thumb" />
-        <div class="sermon-overlay">
-          <div class="sermon-date">Domingo · Servicio</div>
-          <div class="sermon-title">La Fe que Mueve Montañas</div>
-          <div class="sermon-pastor">Pr. Daniel Hermida</div>
-        </div>
-        <div class="play-btn">
-          <svg width="14" height="16" fill="none" viewBox="0 0 14 16">
-            <path d="M1 1l12 7-12 7V1z" stroke="#EAE6DD" stroke-width="1.5" stroke-linejoin="round"/>
-          </svg>
-        </div>
-      </div>
-
-      <div class="sermon-card">
-        <img src="/imgs/extracted_3_serm_n.jpg" alt="Sermón" class="sermon-thumb" />
-        <div class="sermon-overlay">
-          <div class="sermon-date">Miércoles · En Casa</div>
-          <div class="sermon-title">El Arrepentimiento Genuino Produce Lágrimas</div>
-          <div class="sermon-pastor">Pr. Daniel Hermida</div>
-        </div>
-        <div class="play-btn">
-          <svg width="14" height="16" fill="none" viewBox="0 0 14 16">
-            <path d="M1 1l12 7-12 7V1z" stroke="#EAE6DD" stroke-width="1.5" stroke-linejoin="round"/>
-          </svg>
-        </div>
-      </div>
+      {videos.length > 0 ? videos.map((video, index) => (
+        <a href={video.url} target="_blank" rel="noopener" class={`sermon-card${index === 0 ? ' featured' : index === 1 ? ' fix' :''}`}>
+          <img src={video.thumb} alt={video.title} class="sermon-thumb" />
+          <div class="sermon-overlay">
+            <div class="sermon-date">{video.date}</div>
+            <div class="sermon-title">{video.title}</div>
+            <div class="sermon-pastor">Somos Iglesia Medellín</div>
+          </div>
+          <div class="play-btn">
+            <svg width="14" height="16" fill="none" viewBox="0 0 14 16">
+              <path d="M1 1l12 7-12 7V1z" stroke="#EAE6DD" stroke-width="1.5" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </a>
+      )) : (
+        <p style="color:#EAE6DD; opacity:0.5; grid-column: 1 / -1; text-align:center; padding: 2rem 0;">
+          Los sermones no están disponibles en este momento. <a href={PLAYLIST_URL} target="_blank" rel="noopener" style="color:#EAE6DD;">Ver en YouTube →</a>
+        </p>
+      )}
     </div>
   </section>
 </div>

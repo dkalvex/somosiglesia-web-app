@@ -18,14 +18,14 @@
         <p class="pasos-verse">"Jesús Nombre Sobre Todo Nombre" — Filipenses 2:9</p>
       </div>
       <div class="pasos-form-wrap">
-        <form class="pasos-form" method="post" action="#">
+        <form class="pasos-form">
           <div class="form-group">
             <label for="nombre">Nombre completo</label>
             <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
           </div>
           <div class="form-group">
             <label for="email">Correo electrónico</label>
-            <input type="email" id="email" name="email" placeholder="tu@correo.com" required />
+            <input type="email" id="email" name="email" placeholder="tu@correo.com" />
           </div>
           <div class="form-group">
             <label for="telefono">Teléfono</label>
@@ -43,6 +43,31 @@
     </div>
   </section>
 </div>
+
+<script>
+  document.querySelector('.pasos-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const nombre   = document.getElementById('nombre').value.trim();
+    const email    = document.getElementById('email').value.trim();
+    const telefono = document.getElementById('telefono').value.trim();
+    const mensaje  = document.getElementById('mensaje').value.trim();
+
+    let contactInfo = '';
+    if (email && telefono) contactInfo = `Mi correo es ${email} y mi teléfono es ${telefono}.`;
+    else if (email)        contactInfo = `Mi correo es ${email}.`;
+    else if (telefono)     contactInfo = `Mi teléfono es ${telefono}.`;
+
+    const parts = [
+      `Hola! Soy ${nombre}, Los contacto desde la página web de Somos Iglesia.`,
+      contactInfo || null,
+      mensaje ? `Quería contarles: ${mensaje}` : null,
+    ].filter(Boolean).join('\n\n');
+
+    const url = `https://wa.me/573136924776?text=${encodeURIComponent(parts)}`;
+    window.open(url, '_blank');
+  });
+</script>
 
 <style>
   .pasos-layout {

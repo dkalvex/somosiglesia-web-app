@@ -16,23 +16,18 @@
     </div>
 
     <div class="donaciones-grid fade-in">
-      <div class="donacion-card">
-        <div class="donacion-icon">🏦</div>
-        <h3 class="donacion-title">Transferencia Bancaria</h3>
-        <div class="donacion-body">
-          <p><strong>Banco:</strong> Bancolombia</p>
-          <p><strong>Cuenta:</strong> Ahorros — 000 000 0000</p>
-          <p><strong>NIT:</strong> 000.000.000-0</p>
-          <p><strong>Titular:</strong> Somos Iglesia Medellín</p>
-        </div>
+      <div class="donacion-card donacion-card--qr">
+        <h3 class="donacion-title">Código QR</h3>
+        <img src="/imgs/qr-donacion.jpg" alt="Código QR para donación — Haz tu aporte aquí" class="qr-img" />
       </div>
 
-      <div class="donacion-card">
-        <div class="donacion-icon">📱</div>
-        <h3 class="donacion-title">Código QR</h3>
-        <div class="donacion-body" style="display:flex;flex-direction:column;align-items:center;">
-          <div class="qr-placeholder" aria-label="Código QR para donación"></div>
-          <p style="font-size:12px;color:var(--brown-mid);margin-top:12px;">Escanea con Nequi o Daviplata</p>
+      <div class="donacion-card donacion-card--link">
+        <h3 class="donacion-title">Dona en línea</h3>
+        <div class="donacion-body" style="align-items:center;text-align:center;">
+          <p style="margin-bottom:32px;">Haz tu aporte de forma rápida y segura a través de nuestro portal de pagos.</p>
+          <a href="https://checkout.wompi.co/l/VPOS_B3oDZl" target="_blank" rel="noopener noreferrer" class="btn-donar">
+            Hacer mi aporte →
+          </a>
         </div>
       </div>
 
@@ -62,6 +57,9 @@
     padding: 48px 40px;
     transition: background 0.3s;
   }
+  .donacion-card--qr {
+    padding: 48px 40px;
+  }
   .donacion-card:hover { background: #1a1612; }
   .donacion-icon {
     font-size: 32px;
@@ -87,16 +85,35 @@
     color: var(--cream-mid);
     font-weight: 500;
   }
-  .qr-placeholder {
-    width: 120px;
-    height: 120px;
-    background: #1a1612;
-    border: 1px solid rgba(107,106,97,0.3);
+  .qr-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+  }
+  .donacion-card--link {
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
+  }
+  .btn-donar {
+    display: inline-block;
+    padding: 16px 36px;
+    background: var(--cream-light);
+    color: #0a0908;
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-donar:hover {
+    background: var(--cream-mid);
   }
   @media (max-width: 900px) {
     .donaciones-grid { grid-template-columns: 1fr; }
+    .qr-img { max-width: 220px; }
   }
 </style>

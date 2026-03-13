@@ -1,10 +1,10 @@
-# build output
-dist/
 # generated types
 .astro/
 
 # dependencies
 node_modules/
+.playwright-mcp/
+.vscode/
 
 # logs
 npm-debug.log*

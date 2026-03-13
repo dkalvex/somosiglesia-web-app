@@ -1,20 +1,139 @@
 ---
 // Comunidad component
+import { readdirSync } from 'fs';
+const files = readdirSync('./public/instagram');
+const allImages = files
+  .filter(f => /\.(jpg|jpeg|png|webp)$/i.test(f))
+  .map(f => `/instagram/${encodeURIComponent(f)}`);
 ---
 
 <div id="comunidad" style="background:#050403; padding:0; max-width:100%;">
   <div class="insta-banner">
     <p class="insta-handle">@somosiglesiamedellin</p>
     <p class="insta-sub">Síguenos en Instagram</p>
-    <a href="https://instagram.com/somosiglesiamedellin" class="btn-ghost" target="_blank" rel="noopener noreferrer">
+    <a href="https://www.instagram.com/somosiglesiamedellin/" class="btn-ghost" target="_blank" rel="noopener noreferrer">
       Ver Instagram →
     </a>
   </div>
-  <div class="photos-strip">
-    <div class="strip-photo"><img src="/imgs/extracted_6_adoraci_n.jpg" alt="Adoración en Somos Iglesia" class="strip-img" /></div>
-    <div class="strip-photo"><img src="/imgs/extracted_7_img.jpg" alt="Comunidad" class="strip-img" /></div>
-    <div class="strip-photo"><img src="/imgs/extracted_8_img.jpg" alt="Comunidad" class="strip-img" /></div>
-    <div class="strip-photo"><img src="/imgs/extracted_9_img.jpg" alt="Comunidad" class="strip-img" /></div>
-    <div class="strip-photo"><img src="/imgs/extracted_10_img.jpg" alt="Comunidad" class="strip-img" /></div>
+  <div class="slider-wrap">
+    <div class="slider-track" id="slider-track"></div>
   </div>
 </div>
+
+<script type="application/json" id="insta-data" set:html={JSON.stringify(allImages)}></script>
+
+<script>
+  const raw = document.getElementById('insta-data')?.textContent ?? '[]';
+  const allImages: string[] = JSON.parse(raw);
+
+  function shuffle<T>(arr: T[]): T[] {
+    const a = [...arr];
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
+  const selected = shuffle(allImages).slice(0, 8);
+  const doubled = [...selected, ...selected];
+
+  const track = document.getElementById('slider-track');
+  if (track) {
+    doubled.forEach(src => {
+      const item = document.createElement('div');
+      item.className = 'slide-item';
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = 'Somos Iglesia Medellín';
+      img.className = 'slide-img';
+      img.loading = 'lazy';
+      item.appendChild(img);
+      track.appendChild(item);
+    });
+  }
+</script>
+
+<style>
+  .insta-banner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 48px 24px 32px;
+    text-align: center;
+  }
+
+  .insta-handle {
+    font-size: 1.1rem;
+    color: #888;
+    margin: 0;
+    letter-spacing: 0.05em;
+  }
+
+  .insta-sub {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+  }
+
+  .btn-ghost {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 10px 28px;
+    border: 1px solid #fff;
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .btn-ghost:hover {
+    background: #fff;
+    color: #050403;
+  }
+
+  .slider-wrap {
+    overflow: hidden;
+    width: 100%;
+    padding-bottom: 48px;
+  }
+
+  .slider-track {
+    display: flex;
+    gap: 2px;
+    animation: slide-left 70s linear infinite;
+    width: max-content;
+  }
+
+  .slider-track:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes slide-left {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  :global(.slide-item) {
+    flex: 0 0 200px;
+    height: 200px;
+    aspect-ratio: 1;
+    overflow: hidden;
+  }
+
+  :global(.slide-img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.8) saturate(0.8);
+    transition: filter 0.3s, transform 0.3s;
+  }
+
+  :global(.slide-item:hover .slide-img) {
+    filter: brightness(1) saturate(1);
+    transform: scale(1.05);
+  }
+</style>
