@@ -5,6 +5,7 @@
 node_modules/
 .playwright-mcp/
 .vscode/
+dist/
 
 # logs
 npm-debug.log*
