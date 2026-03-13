@@ -1,0 +1,76 @@
+---
+// Pastor component
+---
+
+<div id="pastor" style="background:#0a0908;">
+  <section>
+    <div class="pastor-layout fade-in">
+      <div class="pastor-text">
+        <p class="section-eyebrow">Nuestro Pastor</p>
+        <h2 class="section-title">Daniel<br><em>Hermida</em></h2>
+        <p class="pastor-role">Fundador de Somos Iglesia</p>
+        <div class="divider"></div>
+        <p class="pastor-bio">
+          Daniel Hermida es el fundador y pastor principal de Somos Iglesia Medellín. Con una visión clara de plantar una iglesia que sea familia, Daniel lidera la comunidad con pasión, autenticidad y un profundo amor por las personas.
+        </p>
+        <p class="pastor-bio">
+          Su ministerio está marcado por la enseñanza práctica de la Palabra, la misión de discipular y la convicción de que cada persona tiene un llamado único de Dios. Cree que la iglesia es el plan A de Dios para el mundo — y que no hay plan B.
+        </p>
+        <p class="pastor-verse">"Encomienda al Señor tu camino, y confía en él; él actuará." — Salmos 37:5</p>
+      </div>
+      <div class="pastor-image-wrap">
+        <img src="/imgs/pastor.jpg" alt="Pastor Daniel Hermida" class="pastor-img" />
+      </div>
+    </div>
+  </section>
+</div>
+
+<style>
+  .pastor-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .pastor-role {
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--brown-mid);
+    margin-bottom: 32px;
+    margin-top: -32px;
+  }
+  .pastor-bio {
+    font-size: 16px;
+    line-height: 1.9;
+    color: var(--cream-mid);
+    margin-bottom: 24px;
+  }
+  .pastor-verse {
+    font-size: 13px;
+    color: rgba(202,198,195,0.5);
+    font-style: italic;
+    letter-spacing: 0.05em;
+    margin-top: 8px;
+  }
+  .pastor-image-wrap {
+    position: relative;
+  }
+  .pastor-img {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+  }
+  @media (max-width: 900px) {
+    .pastor-img { height: 400px; }
+  }
+  @media (max-width: 900px) {
+    .pastor-layout {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+    .pastor-image-wrap { order: -1; }
+  }
+</style>

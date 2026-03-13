@@ -1,0 +1,72 @@
+---
+// Ministerios component
+---
+
+<div id="ministerios" style="background:linear-gradient(to bottom,#100d09,#0a0908);">
+  <section>
+    <div class="min-header fade-in">
+      <p class="section-eyebrow">Encuentra tu lugar</p>
+      <h2 class="section-title">Nuestros<br><em>Ministerios</em></h2>
+      <p class="min-intro">Hay un lugar para cada etapa de la vida. Somos una familia completa.</p>
+    </div>
+
+    <div class="connect-grid fade-in">
+      <a href="#" class="connect-card">
+        <span class="connect-number">01</span>
+        <span class="connect-icon">🔥</span>
+        <div class="connect-name">Somos Jóvenes</div>
+        <div class="connect-desc">Un espacio para jóvenes que quieren profundizar su fe, encontrar comunidad auténtica y vivir el evangelio sin rodeos.</div>
+        <div class="connect-arrow">→</div>
+      </a>
+      <a href="#" class="connect-card">
+        <span class="connect-number">02</span>
+        <span class="connect-icon">⚡</span>
+        <div class="connect-name">Somos Teens</div>
+        <div class="connect-desc">Ministerio para adolescentes diseñado para que encuentren identidad en Cristo durante los años más decisivos de su vida.</div>
+        <div class="connect-arrow">→</div>
+      </a>
+      <a href="#" class="connect-card">
+        <span class="connect-number">03</span>
+        <span class="connect-icon">🧒</span>
+        <div class="connect-name">Somos Kids</div>
+        <div class="connect-desc">Un espacio diseñado con amor para que los niños encuentren a Jesús de una manera divertida, segura y memorable.</div>
+        <div class="connect-arrow">→</div>
+      </a>
+      <a href="#" class="connect-card">
+        <span class="connect-number">04</span>
+        <span class="connect-icon">🎵</span>
+        <div class="connect-name">Somos Adoradores</div>
+        <div class="connect-desc">Músicos, cantantes y técnicos que sirven juntos para crear encuentros con Dios cada semana en cada servicio.</div>
+        <div class="connect-arrow">→</div>
+      </a>
+      <a href="#renace" class="connect-card" style="grid-column: span 2;">
+        <span class="connect-number">05</span>
+        <span class="connect-icon">🌿</span>
+        <div class="connect-name">Renace — Grupos en Casa</div>
+        <div class="connect-desc">Grupos pequeños donde la iglesia sucede de verdad — en conversaciones reales, en mesas compartidas, semana a semana. La iglesia no es un edificio; es la gente.</div>
+        <div class="connect-arrow">→</div>
+      </a>
+    </div>
+  </section>
+</div>
+
+<style>
+  .min-header {
+    max-width: 700px;
+    margin-bottom: 0;
+  }
+  .min-header .section-title {
+    margin-bottom: 24px;
+  }
+  .min-intro {
+    font-size: 15px;
+    color: var(--brown-mid);
+    line-height: 1.8;
+    margin-bottom: 0;
+  }
+  @media (max-width: 900px) {
+    .connect-card[style*="span 2"] {
+      grid-column: span 1 !important;
+    }
+  }
+</style>

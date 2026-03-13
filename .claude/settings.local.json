@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(sed -n '1095,1199p' /i/repos/somosiglesia-web-app/docs/original-index.html)",
+      "Read(//tmp/**)"
+    ]
+  }
+}

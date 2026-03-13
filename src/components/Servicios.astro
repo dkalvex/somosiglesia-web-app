@@ -1,0 +1,114 @@
+---
+// Servicios component
+---
+
+<div id="servicios" style="background:#0a0908;">
+  <section>
+    <div class="servicios-layout">
+      <div class="servicios-image-wrap fade-in">
+        <div class="servicios-image-accent"></div>
+        <img src="/imgs/extracted_4_iglesia.jpg" alt="Sede de Somos Iglesia Medellín" class="servicios-image servicios-real-img" />
+      </div>
+      <div class="fade-in">
+        <p class="section-eyebrow">Tiempo de Servicios</p>
+        <h2 class="section-title">Nos vemos<br><em>en casa.</em></h2>
+        <div class="divider"></div>
+        <p style="font-size:14px;color:var(--brown-mid);line-height:1.8;margin-bottom:48px;">
+          Te esperamos con los brazos abiertos. Ven como eres, encuentra lo que necesitas. Aquí hay un lugar para ti y para tu familia.
+        </p>
+
+        <div class="horarios-list">
+          <div class="horario-item">
+            <div class="horario-day">
+              <div class="horario-day-name">Miércoles</div>
+              <div class="horario-day-sub">En Casa</div>
+            </div>
+            <div class="horario-details">
+              <div class="horario-time">7:00 PM — 8:30 PM</div>
+              <div class="horario-location">📍 Sede Principal, Medellín</div>
+              <div class="horario-badge">Cada semana</div>
+            </div>
+          </div>
+
+          <div class="horario-item">
+            <div class="horario-day">
+              <div class="horario-day-name">Jueves</div>
+              <div class="horario-day-sub">ADN</div>
+            </div>
+            <div class="horario-details">
+              <div class="horario-time">7:00 PM — 8:30 PM</div>
+              <div class="horario-location">📍 Grupos en Casa</div>
+              <div class="horario-badge" style="background:rgba(50,29,8,0.6);border-color:rgba(202,198,195,0.3);">Nuevo</div>
+            </div>
+          </div>
+
+          <div class="horario-item">
+            <div class="horario-day">
+              <div class="horario-day-name">Viernes</div>
+              <div class="horario-day-sub">Jóvenes</div>
+            </div>
+            <div class="horario-details">
+              <div class="horario-time">7:00 PM — 9:00 PM</div>
+              <div class="horario-location">📍 Sede Principal, Medellín</div>
+              <div class="horario-badge" style="background:rgba(50,29,8,0.6);border-color:rgba(202,198,195,0.3);">Nuevo</div>
+            </div>
+          </div>
+
+          <div class="horario-item">
+            <div class="horario-day">
+              <div class="horario-day-name">Domingo</div>
+              <div class="horario-day-sub">Servicio</div>
+            </div>
+            <div class="horario-details">
+              <div class="horario-time">10:00 AM — 12:00 PM</div>
+              <div class="horario-location">📍 Sede Principal, Medellín</div>
+              <div class="horario-badge">Cada domingo</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:40px;">
+          <a href="#pasos" class="btn-primary">¿Cómo llegar?</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<style>
+  .servicios-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .servicios-image-wrap {
+    position: relative;
+  }
+  .servicios-image {
+    width: 100%;
+    filter: brightness(0.7) saturate(0.8);
+  }
+  .servicios-real-img {
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    display: block;
+  }
+  .servicios-image-accent {
+    position: absolute;
+    top: -20px; left: -20px;
+    width: 60%;
+    aspect-ratio: 1;
+    border: 1px solid rgba(107,106,97,0.3);
+    z-index: -1;
+  }
+  .horarios-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  @media (max-width: 900px) {
+    .servicios-layout { grid-template-columns: 1fr; }
+    .servicios-image-wrap { display: none; }
+  }
+</style>
