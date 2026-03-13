@@ -181,7 +181,6 @@ nav {
 .hero-bg {
   position: absolute;
   inset: 0;
-  background-image: url('/imgs/extracted_bg_0.jpg');
   background-size: cover;
   background-position: center;
   background-color: #0a0908;

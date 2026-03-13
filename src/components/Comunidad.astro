@@ -4,7 +4,7 @@ import { readdirSync } from 'fs';
 const files = readdirSync('./public/instagram');
 const allImages = files
   .filter(f => /\.(jpg|jpeg|png|webp)$/i.test(f))
-  .map(f => `/instagram/${encodeURIComponent(f)}`);
+  .map(f => `${import.meta.env.BASE_URL}instagram/${encodeURIComponent(f)}`);
 ---
 
 <div id="comunidad" style="background:#050403; padding:0; max-width:100%;">
