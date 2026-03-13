@@ -2,12 +2,12 @@
 // Donaciones component
 ---
 
-<div id="donaciones" style="background:#0a0908;">
+<div id="donaciones" style="background:var(--surface-bg);">
   <section>
     <div class="donaciones-header fade-in" style="text-align:center; max-width:700px; margin:0 auto 80px;">
       <p class="section-eyebrow">Ofrendas y Diezmos</p>
       <h2 class="section-title">Sembrar en<br><em>lo eterno.</em></h2>
-      <p style="font-size:13px;color:rgba(202,198,195,0.5);font-style:italic;margin-bottom:16px;">
+      <p style="font-size:13px;color:var(--text-faint);font-style:italic;margin-bottom:16px;">
         "Y poderoso es Dios para hacer que abunde en vosotros toda gracia, a fin de que, teniendo siempre en todas las cosas todo lo suficiente, abundéis para toda buena obra." — 2 Corintios 9:8
       </p>
       <p style="font-size:15px;color:var(--brown-mid);line-height:1.8;">
@@ -52,15 +52,15 @@
     gap: 2px;
   }
   .donacion-card {
-    background: #12100e;
-    border: 1px solid rgba(107,106,97,0.15);
+    background: var(--surface-raised);
+    border: 1px solid var(--border-subtle);
     padding: 48px 40px;
     transition: background 0.3s;
   }
   .donacion-card--qr {
     padding: 48px 40px;
   }
-  .donacion-card:hover { background: #1a1612; }
+  .donacion-card:hover { background: var(--surface-raised-hover); }
   .donacion-icon {
     font-size: 32px;
     margin-bottom: 24px;
@@ -100,7 +100,7 @@
     display: inline-block;
     padding: 16px 36px;
     background: var(--cream-light);
-    color: #0a0908;
+    color: var(--surface-bg);
     font-family: 'Outfit', sans-serif;
     font-size: 13px;
     font-weight: 600;

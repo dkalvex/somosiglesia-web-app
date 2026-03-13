@@ -7,7 +7,7 @@ const allImages = files
   .map(f => `${import.meta.env.BASE_URL}instagram/${encodeURIComponent(f)}`);
 ---
 
-<div id="comunidad" style="background:#050403; padding:0; max-width:100%;">
+<div id="comunidad" style="background:var(--surface-deep); padding:0; max-width:100%;">
   <div class="insta-banner">
     <p class="insta-handle">@somosiglesiamedellin</p>
     <p class="insta-sub">Síguenos en Instagram</p>
@@ -82,8 +82,8 @@ const allImages = files
     display: inline-block;
     margin-top: 8px;
     padding: 10px 28px;
-    border: 1px solid #fff;
-    color: #fff;
+    border: 1px solid var(--text-primary);
+    color: var(--text-primary);
     text-decoration: none;
     font-size: 0.95rem;
     letter-spacing: 0.08em;
@@ -91,8 +91,8 @@ const allImages = files
   }
 
   .btn-ghost:hover {
-    background: #fff;
-    color: #050403;
+    background: var(--text-primary);
+    color: var(--surface-bg);
   }
 
   .slider-wrap {

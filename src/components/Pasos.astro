@@ -2,7 +2,7 @@
 // Pasos component
 ---
 
-<div id="pasos" style="background:#100d09;">
+<div id="pasos" style="background:var(--surface-raised);">
   <section>
     <div class="pasos-layout fade-in">
       <div class="pasos-text">
@@ -84,14 +84,14 @@
   }
   .pasos-verse {
     font-size: 13px;
-    color: rgba(202,198,195,0.5);
+    color: var(--text-faint);
     font-style: italic;
     letter-spacing: 0.05em;
     margin-top: 8px;
   }
   .pasos-form-wrap {
-    background: #12100e;
-    border: 1px solid rgba(107,106,97,0.15);
+    background: var(--surface-raised);
+    border: 1px solid var(--border-subtle);
     padding: 48px;
   }
   .pasos-form {
@@ -113,9 +113,9 @@
   }
   .form-group input,
   .form-group textarea {
-    background: #0a0908;
+    background: var(--surface-bg);
     border: 1px solid rgba(107,106,97,0.2);
-    color: var(--cream-light);
+    color: var(--text-primary);
     padding: 14px 16px;
     font-family: 'Outfit', sans-serif;
     font-size: 14px;

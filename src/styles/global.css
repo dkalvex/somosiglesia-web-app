@@ -7,6 +7,46 @@
   --white: #ffffff;
   --accent: #321D08;
   --body-bg: #0a0908;
+
+  /* Semantic tokens — dark (default) */
+  --surface-bg: #0a0908;
+  --surface-alt: #0f0d0a;
+  --surface-raised: #12100e;
+  --surface-raised-hover: #1a1612;
+  --surface-deep: #050403;
+  --surface-dark-alt: #0d0b09;
+  --nav-gradient: rgba(10,9,8,0.95);
+  --mobile-nav-bg: rgba(10,9,8,0.97);
+  --noise-opacity: 0.4;
+  --text-primary: #EAE6DD;
+  --text-secondary: #CAC6C3;
+  --text-faint: rgba(202,198,195,0.5);
+  --border-subtle: rgba(107,106,97,0.15);
+  --border-strong: rgba(202,198,195,0.3);
+  --scroll-indicator: rgba(202,198,195,0.5);
+}
+
+[data-theme="light"] {
+  --surface-bg: #f0ebe0;
+  --surface-alt: #f5f0e8;
+  --surface-raised: #e8e1d4;
+  --surface-raised-hover: #e0d9cc;
+  --surface-deep: #ece6d8;
+  --surface-dark-alt: #eae4d6;
+  --nav-gradient: rgba(240,235,224,0.97);
+  --mobile-nav-bg: rgba(240,235,224,0.99);
+  --noise-opacity: 0.15;
+  --text-primary: #1a0e04;
+  --text-secondary: #321D08;
+  --text-faint: rgba(50,29,8,0.5);
+  --border-subtle: rgba(107,106,97,0.2);
+  --border-strong: rgba(50,29,8,0.3);
+  --scroll-indicator: rgba(50,29,8,0.4);
+  --cream-light: #1a0e04;
+  --cream-mid: #4a3420;
+  --white: #1a0e04;
+  --black: #f0ebe0;
+  --body-bg: #f0ebe0;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -14,7 +54,7 @@
 html { scroll-behavior: smooth; }
 
 body {
-  background: #0a0908;
+  background: var(--surface-bg);
   color: var(--cream-light);
   font-family: 'Outfit', sans-serif;
   font-weight: 300;
@@ -29,7 +69,7 @@ body::before {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
   pointer-events: none;
   z-index: 1000;
-  opacity: 0.4;
+  opacity: var(--noise-opacity);
 }
 
 /* ─── NAVBAR ─── */
@@ -41,7 +81,7 @@ nav {
   align-items: center;
   justify-content: space-between;
   padding: 20px 60px;
-  background: linear-gradient(to bottom, rgba(10,9,8,0.95) 0%, transparent 100%);
+  background: linear-gradient(to bottom, var(--nav-gradient) 0%, transparent 100%);
   backdrop-filter: blur(2px);
 }
 
@@ -146,7 +186,7 @@ nav {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(10,9,8,0.97);
+  background: var(--mobile-nav-bg);
   z-index: 200;
   flex-direction: column;
   align-items: center;
@@ -183,7 +223,7 @@ nav {
   inset: 0;
   background-size: cover;
   background-position: center;
-  background-color: #0a0908;
+  background-color: var(--surface-bg);
   transform: scale(1.05);
   animation: slowZoom 20s ease-out forwards;
   filter: brightness(0.25) saturate(0.6);
@@ -246,7 +286,7 @@ nav {
 
 .hero-verse {
   font-size: 13px;
-  color: rgba(202,198,195,0.6);
+  color: var(--text-faint);
   letter-spacing: 0.08em;
   margin-bottom: 56px;
   font-style: italic;
@@ -288,7 +328,7 @@ nav {
   font-weight: 400;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  border: 1px solid rgba(234,230,221,0.4);
+  border: 1px solid var(--border-subtle);
   cursor: pointer;
   transition: all 0.3s;
   text-decoration: none;
@@ -311,7 +351,7 @@ nav {
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  color: rgba(202,198,195,0.5);
+  color: var(--scroll-indicator);
   font-size: 10px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -321,7 +361,7 @@ nav {
 .scroll-line {
   width: 1px;
   height: 40px;
-  background: linear-gradient(to bottom, rgba(202,198,195,0.5), transparent);
+  background: linear-gradient(to bottom, var(--scroll-indicator), transparent);
 }
 
 /* ─── LIVE BADGE ─── */
@@ -391,11 +431,11 @@ section {
 
 /* ─── IMG PLACEHOLDER ─── */
 .img-placeholder {
-  background: #1a1612;
+  background: var(--surface-raised-hover);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(107,106,97,0.4);
+  color: var(--text-faint);
   font-size: 12px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -429,7 +469,7 @@ section {
   aspect-ratio: 16/9;
   overflow: hidden;
   cursor: pointer;
-  background: #1a1612;
+  background: var(--surface-raised-hover);
 }
 
 .sermon-thumb {
@@ -542,8 +582,8 @@ section {
 .connect-card {
   position: relative;
   padding: 60px 48px;
-  background: #12100e;
-  border: 1px solid rgba(107,106,97,0.15);
+  background: var(--surface-raised);
+  border: 1px solid var(--border-subtle);
   overflow: hidden;
   cursor: pointer;
   transition: all 0.4s;
@@ -562,7 +602,7 @@ section {
 }
 
 .connect-card:hover::before { height: 100%; }
-.connect-card:hover { background: #1a1612; }
+.connect-card:hover { background: var(--surface-raised-hover); }
 
 .connect-number {
   font-family: 'Cormorant Garamond', serif;
@@ -638,7 +678,7 @@ section {
 }
 
 .horario-day {
-  background: #12100e;
+  background: var(--surface-raised);
   padding: 28px 24px;
   min-width: 140px;
   display: flex;
@@ -704,13 +744,13 @@ section {
 }
 
 .belief-card {
-  background: #0a0908;
+  background: var(--surface-bg);
   padding: 48px 40px;
   position: relative;
   transition: background 0.3s;
 }
 
-.belief-card:hover { background: #12100e; }
+.belief-card:hover { background: var(--surface-raised); }
 
 .belief-num {
   font-family: 'Cormorant Garamond', serif;
@@ -737,7 +777,7 @@ section {
 
 /* ─── INSTAGRAM / COMMUNITY ─── */
 .insta-banner {
-  background: #12100e;
+  background: var(--surface-raised);
   padding: 80px 60px;
   text-align: center;
   border-top: 1px solid rgba(107,106,97,0.15);
@@ -797,7 +837,7 @@ section {
 
 /* ─── FOOTER ─── */
 footer {
-  background: #050403;
+  background: var(--surface-deep);
   padding: 80px 60px 40px;
   border-top: 1px solid rgba(107,106,97,0.1);
 }
@@ -929,6 +969,18 @@ footer {
 }
 
 /* ─── RESPONSIVE ─── */
+/* ─── SECTION GRADIENT BGs ─── */
+.section-adn-bg {
+  background: linear-gradient(to bottom, var(--surface-bg), var(--surface-raised));
+}
+.section-ministerios-bg {
+  background: linear-gradient(to bottom, var(--surface-raised), var(--surface-bg));
+}
+
+/* ─── THEME TOGGLE ICON SWAP ─── */
+[data-theme="light"] .icon-sun { display: none; }
+[data-theme="light"] .icon-moon { display: block; }
+
 @media (max-width: 900px) {
   nav { padding: 16px 24px; }
   .nav-links { display: none; }
