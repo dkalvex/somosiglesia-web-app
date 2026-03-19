@@ -40,6 +40,24 @@ import '../styles/global.css';
     }, { threshold: 0.1 });
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
+    // Wave ripple + border on scroll for mobile: activar solo la tarjeta que toca la línea central
+    const beliefCards = document.querySelectorAll('.belief-card');
+    if (beliefCards.length > 0) {
+      const updateCardInView = () => {
+        const centerY = window.innerHeight / 2;
+        beliefCards.forEach(card => {
+          const rect = card.getBoundingClientRect();
+          if (rect.top <= centerY && rect.bottom >= centerY) {
+            card.classList.add('in-view');
+          } else {
+            card.classList.remove('in-view');
+          }
+        });
+      };
+      window.addEventListener('scroll', updateCardInView, { passive: true });
+      updateCardInView();
+    }
+
     // Active nav highlighting al scroll
     const sections = document.querySelectorAll('[id]');
     const navLinks = document.querySelectorAll('.nav-links a');

@@ -747,10 +747,66 @@ section {
   background: var(--surface-bg);
   padding: 48px 40px;
   position: relative;
-  transition: background 0.3s;
+  overflow: hidden;
+  transform: translateY(0);
+  transition: background 0.3s, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.belief-card:hover { background: var(--surface-raised); }
+.belief-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    -45deg,
+    rgba(50, 29, 8, 0.45),
+    rgba(107, 106, 97, 0.22),
+    rgba(18, 16, 14, 0.38),
+    rgba(202, 198, 195, 0.10)
+  );
+  background-size: 400% 400%;
+  clip-path: circle(0% at 100% 100%);
+  transition: clip-path 0.65s cubic-bezier(0.23, 1, 0.32, 1);
+  animation: card-wave-gradient 5s ease infinite paused;
+  pointer-events: none;
+}
+
+[data-theme="light"] .belief-card::before {
+  background: linear-gradient(
+    -45deg,
+    rgba(50, 29, 8, 0.18),
+    rgba(107, 106, 97, 0.12),
+    rgba(50, 29, 8, 0.15),
+    rgba(107, 106, 97, 0.08)
+  );
+  background-size: 400% 400%;
+}
+
+.belief-card:hover::before {
+  clip-path: circle(150% at 100% 100%);
+  animation-play-state: running;
+}
+
+@media (hover: none) {
+  .belief-card.in-view::before {
+    clip-path: circle(150% at 100% 100%);
+    animation-play-state: running;
+  }
+  .belief-card.in-view .border-animator span {
+    opacity: 1;
+    transform: scale(1);
+  }
+  .belief-card.in-view .border-animator span:nth-child(1) { transition-delay: 0s; }
+  .belief-card.in-view .border-animator span:nth-child(2) { transition-delay: 0.08s; }
+  .belief-card.in-view .border-animator span:nth-child(3) { transition-delay: 0.16s; }
+  .belief-card.in-view .border-animator span:nth-child(4) { transition-delay: 0.24s; }
+}
+
+.belief-card:hover {
+  background: var(--surface-raised);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+}
 
 .belief-num {
   font-family: 'Cormorant Garamond', serif;
@@ -759,7 +815,65 @@ section {
   color: rgba(107,106,97,0.15);
   line-height: 1;
   margin-bottom: 20px;
+  display: inline-block;
 }
+
+/* ─── BORDER TRACE ANIMATION ─── */
+.border-animator {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.border-animator span {
+  position: absolute;
+  background: linear-gradient(90deg, var(--cream-mid), var(--cream-light));
+  transition: transform 0.35s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.35s;
+  opacity: 0;
+}
+
+/* Top */
+.border-animator span:nth-child(1) {
+  top: 0; left: 0;
+  width: 100%; height: 1px;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+/* Right */
+.border-animator span:nth-child(2) {
+  top: 0; right: 0;
+  width: 1px; height: 100%;
+  transform: scaleY(0);
+  transform-origin: top;
+}
+
+/* Bottom */
+.border-animator span:nth-child(3) {
+  bottom: 0; left: 0;
+  width: 100%; height: 1px;
+  transform: scaleX(0);
+  transform-origin: right;
+}
+
+/* Left */
+.border-animator span:nth-child(4) {
+  top: 0; left: 0;
+  width: 1px; height: 100%;
+  transform: scaleY(0);
+  transform-origin: bottom;
+}
+
+.belief-card:hover .border-animator span {
+  opacity: 1;
+  transform: scale(1);
+}
+.belief-card:hover .border-animator span:nth-child(1) { transition-delay: 0s; }
+.belief-card:hover .border-animator span:nth-child(2) { transition-delay: 0.08s; }
+.belief-card:hover .border-animator span:nth-child(3) { transition-delay: 0.16s; }
+.belief-card:hover .border-animator span:nth-child(4) { transition-delay: 0.24s; }
 
 .belief-title {
   font-family: 'Cormorant Garamond', serif;
@@ -955,6 +1069,12 @@ footer {
 @keyframes pulse {
   0%, 100% { opacity: 1; transform: scale(1); }
   50% { opacity: 0.4; transform: scale(0.7); }
+}
+
+@keyframes card-wave-gradient {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .fade-in {
